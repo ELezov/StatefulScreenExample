@@ -27,6 +27,12 @@
 		8E73C8A6239C45AE000A7F8A /* ContactFieldView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E73C8A4239C45AE000A7F8A /* ContactFieldView.xib */; };
 		8E73C8AD239C493A000A7F8A /* DisclosureTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E73C8AB239C493A000A7F8A /* DisclosureTextView.swift */; };
 		8E73C8AE239C493A000A7F8A /* DisclosureTextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E73C8AC239C493A000A7F8A /* DisclosureTextView.xib */; };
+		8E73C8BF239C5A46000A7F8A /* AppComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E73C8BE239C5A46000A7F8A /* AppComponent.swift */; };
+		8E73C8C7239C5B01000A7F8A /* RootNavigationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E73C8C1239C5B01000A7F8A /* RootNavigationRouter.swift */; };
+		8E73C8C9239C5B01000A7F8A /* RootNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E73C8C3239C5B01000A7F8A /* RootNavigationViewController.swift */; };
+		8E73C8CA239C5B01000A7F8A /* RootNavigationProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E73C8C4239C5B01000A7F8A /* RootNavigationProtocols.swift */; };
+		8E73C8CB239C5B01000A7F8A /* RootNavigationBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E73C8C5239C5B01000A7F8A /* RootNavigationBuilder.swift */; };
+		8E73C8CC239C5B01000A7F8A /* RootNavigationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E73C8C6239C5B01000A7F8A /* RootNavigationInteractor.swift */; };
 		8EFD7C0D239BF000002EBA60 /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFD7C06239BF000002EBA60 /* ProfilePresenter.swift */; };
 		8EFD7C0E239BF000002EBA60 /* ProfileRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFD7C07239BF000002EBA60 /* ProfileRouter.swift */; };
 		8EFD7C0F239BF000002EBA60 /* ProfileStackViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8EFD7C08239BF000002EBA60 /* ProfileStackViewController.storyboard */; };
@@ -41,7 +47,7 @@
 		8EFD7C27239BF7D1002EBA60 /* StoryboardInstantiatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFD7C26239BF7D1002EBA60 /* StoryboardInstantiatable.swift */; };
 		8EFD7C2A239BF95B002EBA60 /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFD7C28239BF95B002EBA60 /* ProfileTableViewController.swift */; };
 		8EFD7C2B239BF95B002EBA60 /* ProfileTableViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8EFD7C29239BF95B002EBA60 /* ProfileTableViewController.storyboard */; };
-		8EFD7C2D239BFB20002EBA60 /* Dependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFD7C2C239BFB20002EBA60 /* Dependency.swift */; };
+		8EFD7C2D239BFB20002EBA60 /* RootDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFD7C2C239BFB20002EBA60 /* RootDependency.swift */; };
 		8EFD7C39239C1504002EBA60 /* LoadingIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFD7C38239C1504002EBA60 /* LoadingIndicatorView.swift */; };
 		8EFD7C3B239C1680002EBA60 /* NibLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFD7C3A239C1680002EBA60 /* NibLoadable.swift */; };
 		8EFD7C3D239C16CB002EBA60 /* ErrorMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFD7C3C239C16CB002EBA60 /* ErrorMessageView.swift */; };
@@ -93,6 +99,12 @@
 		8E73C8A4239C45AE000A7F8A /* ContactFieldView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContactFieldView.xib; sourceTree = "<group>"; };
 		8E73C8AB239C493A000A7F8A /* DisclosureTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisclosureTextView.swift; sourceTree = "<group>"; };
 		8E73C8AC239C493A000A7F8A /* DisclosureTextView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DisclosureTextView.xib; sourceTree = "<group>"; };
+		8E73C8BE239C5A46000A7F8A /* AppComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppComponent.swift; sourceTree = "<group>"; };
+		8E73C8C1239C5B01000A7F8A /* RootNavigationRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootNavigationRouter.swift; sourceTree = "<group>"; };
+		8E73C8C3239C5B01000A7F8A /* RootNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootNavigationViewController.swift; sourceTree = "<group>"; };
+		8E73C8C4239C5B01000A7F8A /* RootNavigationProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootNavigationProtocols.swift; sourceTree = "<group>"; };
+		8E73C8C5239C5B01000A7F8A /* RootNavigationBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootNavigationBuilder.swift; sourceTree = "<group>"; };
+		8E73C8C6239C5B01000A7F8A /* RootNavigationInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootNavigationInteractor.swift; sourceTree = "<group>"; };
 		8EFD7C06239BF000002EBA60 /* ProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
 		8EFD7C07239BF000002EBA60 /* ProfileRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRouter.swift; sourceTree = "<group>"; };
 		8EFD7C08239BF000002EBA60 /* ProfileStackViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ProfileStackViewController.storyboard; sourceTree = "<group>"; };
@@ -107,7 +119,7 @@
 		8EFD7C26239BF7D1002EBA60 /* StoryboardInstantiatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardInstantiatable.swift; sourceTree = "<group>"; };
 		8EFD7C28239BF95B002EBA60 /* ProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
 		8EFD7C29239BF95B002EBA60 /* ProfileTableViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ProfileTableViewController.storyboard; sourceTree = "<group>"; };
-		8EFD7C2C239BFB20002EBA60 /* Dependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dependency.swift; sourceTree = "<group>"; };
+		8EFD7C2C239BFB20002EBA60 /* RootDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootDependency.swift; sourceTree = "<group>"; };
 		8EFD7C38239C1504002EBA60 /* LoadingIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingIndicatorView.swift; sourceTree = "<group>"; };
 		8EFD7C3A239C1680002EBA60 /* NibLoadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibLoadable.swift; sourceTree = "<group>"; };
 		8EFD7C3C239C16CB002EBA60 /* ErrorMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMessageView.swift; sourceTree = "<group>"; };
@@ -204,7 +216,10 @@
 		8E71C16A23999EA90051C45E /* RIBs */ = {
 			isa = PBXGroup;
 			children = (
-				8EFD7C2C239BFB20002EBA60 /* Dependency.swift */,
+				8E73C8C0239C5ADE000A7F8A /* RootNavigation */,
+				8E73C8CD239C5B42000A7F8A /* Main */,
+				8EFD7C2C239BFB20002EBA60 /* RootDependency.swift */,
+				8E73C8BE239C5A46000A7F8A /* AppComponent.swift */,
 				8EFD7C14239BF005002EBA60 /* Profile */,
 				8E71C13E23999E920051C45E /* ViewController.swift */,
 				8E71C14023999E920051C45E /* Main.storyboard */,
@@ -249,6 +264,25 @@
 				8E73C8AC239C493A000A7F8A /* DisclosureTextView.xib */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		8E73C8C0239C5ADE000A7F8A /* RootNavigation */ = {
+			isa = PBXGroup;
+			children = (
+				8E73C8C4239C5B01000A7F8A /* RootNavigationProtocols.swift */,
+				8E73C8C5239C5B01000A7F8A /* RootNavigationBuilder.swift */,
+				8E73C8C1239C5B01000A7F8A /* RootNavigationRouter.swift */,
+				8E73C8C6239C5B01000A7F8A /* RootNavigationInteractor.swift */,
+				8E73C8C3239C5B01000A7F8A /* RootNavigationViewController.swift */,
+			);
+			path = RootNavigation;
+			sourceTree = "<group>";
+		};
+		8E73C8CD239C5B42000A7F8A /* Main */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Main;
 			sourceTree = "<group>";
 		};
 		8EFD7C14239BF005002EBA60 /* Profile */ = {
@@ -479,21 +513,27 @@
 				8EFD7C27239BF7D1002EBA60 /* StoryboardInstantiatable.swift in Sources */,
 				8EFD7C0D239BF000002EBA60 /* ProfilePresenter.swift in Sources */,
 				8E73C898239C4482000A7F8A /* UITableViewXibContainerCell.swift in Sources */,
+				8E73C8CA239C5B01000A7F8A /* RootNavigationProtocols.swift in Sources */,
+				8E73C8C9239C5B01000A7F8A /* RootNavigationViewController.swift in Sources */,
 				8EFD7C39239C1504002EBA60 /* LoadingIndicatorView.swift in Sources */,
 				8E71C13D23999E920051C45E /* SceneDelegate.swift in Sources */,
 				8EFD7C2A239BF95B002EBA60 /* ProfileTableViewController.swift in Sources */,
+				8E73C8BF239C5A46000A7F8A /* AppComponent.swift in Sources */,
 				8EFD7C25239BF77A002EBA60 /* VIPBinder.swift in Sources */,
 				8EFD7C1C239BF15C002EBA60 /* ProfileServiceImp.swift in Sources */,
 				8EFD7C0E239BF000002EBA60 /* ProfileRouter.swift in Sources */,
 				8E73C8AD239C493A000A7F8A /* DisclosureTextView.swift in Sources */,
 				8EFD7C42239C1A04002EBA60 /* UIView+Extensions.swift in Sources */,
 				8E73C893239C4411000A7F8A /* TableViewRegisterable.swift in Sources */,
-				8EFD7C2D239BFB20002EBA60 /* Dependency.swift in Sources */,
+				8EFD7C2D239BFB20002EBA60 /* RootDependency.swift in Sources */,
 				8EFD7C11239BF000002EBA60 /* ProfileProtocols.swift in Sources */,
 				8EFD7C3D239C16CB002EBA60 /* ErrorMessageView.swift in Sources */,
+				8E73C8CC239C5B01000A7F8A /* RootNavigationInteractor.swift in Sources */,
 				8EFD7C1E239BF582002EBA60 /* Tooling.swift in Sources */,
+				8E73C8C7239C5B01000A7F8A /* RootNavigationRouter.swift in Sources */,
 				8E73C8A5239C45AE000A7F8A /* ContactFieldView.swift in Sources */,
 				8EFD7C13239BF000002EBA60 /* ProfileInteractor.swift in Sources */,
+				8E73C8CB239C5B01000A7F8A /* RootNavigationBuilder.swift in Sources */,
 				8EFD7C12239BF000002EBA60 /* ProfileBuilder.swift in Sources */,
 				8EFD7C1A239BF0A1002EBA60 /* ProfileService.swift in Sources */,
 			);
