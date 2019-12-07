@@ -13,4 +13,21 @@ final class ProfileRouter: ViewableRouter<ProfileInteractable, ProfileViewContro
     super.init(interactor: interactor, viewController: viewController)
     interactor.router = self
   }
+  
+  func routeToEmailChange() {
+    showStubAlert(title: "Смена e-mail")
+  }
+  
+  func routeToEmailAddition() {
+    showStubAlert(title: "Добавление e-mail")
+  }
+  
+  private func showStubAlert(title: String) {
+    let message = "Вместо этого сообщения в боевом проекте производится роутинг на нужный экран"
+    
+    let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+    alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+    
+    viewController.uiviewController.present(alert, animated: true, completion: nil)
+  }
 }

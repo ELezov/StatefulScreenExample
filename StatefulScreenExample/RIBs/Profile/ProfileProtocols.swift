@@ -40,11 +40,7 @@ protocol ProfilePresentable: Presentable {}
 
 // MARK: Outputs
 
-enum ProfileInteractorState {
-  case isLoadingProfile
-  case dataLoaded(Profile)
-  case profileLoadingError(Error)
-}
+typealias ProfileInteractorState = IState<Profile, Error>
 
 struct ProfilePresenterOutput {
   let viewModel: Driver<ProfileViewModel>
@@ -59,22 +55,24 @@ struct ProfileViewOutput {
   /// Добавление / изменение e-mail'a
   let emailUpdateTap: ControlEvent<Void>
   
+  let myOrdersTap: ControlEvent<Void>
+  
   let retryButtonTap: ControlEvent<Void>
 }
 
-struct ProfileViewModel {
+struct ProfileViewModel: Equatable {
   let firstName: TitledText
   let lastName: TitledText
-  let middleName: TitledModel<String?>
+  let middleName: TitledOptionalText
   
   let login: TitledText
-  let email: TitledModel<String?>
-  let phone: TitledModel<String?>
+  let email: TitledOptionalText
+  let phone: TitledOptionalText
   
   let myOrders: String
 }
 
-struct ErrorMessageViewModel {
+struct ErrorMessageViewModel: Equatable {
   let title: String
   let buttonTitle: String
 }

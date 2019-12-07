@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class ErrorMessageView: UIView {
+final class ErrorMessageView: UIView, ResetableView {
   private let titleLabel = UILabel()
   private let button = UIButton()
   

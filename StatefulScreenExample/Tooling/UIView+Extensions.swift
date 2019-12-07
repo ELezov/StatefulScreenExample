@@ -20,6 +20,7 @@ extension Reactive where Base: UIView {
 }
 
 extension UIView {
+  /// The opposite of isHidden property
   public var isVisible: Bool {
     get { !isHidden }
     set { isHidden = !newValue }
@@ -39,6 +40,22 @@ extension UIView {
     ]
 
     NSLayoutConstraint.activate(constraints)
+  }
+}
+
+/// Как правило, ResetableView это также и ReusableView
+public protocol ResetableView: AnyObject {
+  /** Метод очищает текущие данные во View и сбрасывает её в дефолтное состояние.
+   Отвественность за вызов метода лежит на том классе, который использует экземпляр ResetableView.
+   Исключением являются awakeFromNib() или init() методы: здесь resetToEmptyState() вызвается, чтобы перед
+   использованием view очистить из неё данные, которые уставлены в storyaboard'e и xib'e, и привести её в дефолтное
+   состояние */
+  func resetToEmptyState()
+}
+
+extension UIStackView {
+  public func addArrangedSubviews(_ views: [UIView]) {
+    views.forEach { addArrangedSubview($0) }
   }
 }
 

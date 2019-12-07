@@ -26,6 +26,7 @@ final class ProfileTableViewController: UIViewController, ProfileViewControllabl
 
   private let emailUpdateTap = PublishRelay<Void>()
   private let retryButtonTap = PublishRelay<Void>()
+  private let myOrdersTap = PublishRelay<Void>()
 
   private let disposeBag = DisposeBag()
 
@@ -45,6 +46,15 @@ extension ProfileTableViewController {
 
     view.addStretchedToBounds(subview: loadingIndicatorView)
     view.addStretchedToBounds(subview: errorMessageView)
+    
+    tableView.register(ContactFieldCell.self)
+    tableView.register(DisclosureTextCell.self)
+    
+    tableView.rx.setDelegate(self).disposed(by: disposeBag)
+    
+    dataSource.animationConfiguration = AnimationConfiguration(insertAnimation: .fade,
+                                                               reloadAnimation: .fade,
+                                                               deleteAnimation: .fade)
   }
 }
 
@@ -53,6 +63,7 @@ extension ProfileTableViewController {
 extension ProfileTableViewController: BindableView {
   func getOutput() -> ProfileViewOutput {
     .init(emailUpdateTap: ControlEvent(events: emailUpdateTap),
+          myOrdersTap: ControlEvent(events: myOrdersTap),
           retryButtonTap: ControlEvent(events: retryButtonTap))
   }
 
@@ -77,23 +88,23 @@ extension ProfileTableViewController: BindableView {
     }).disposed(by: disposeBag)
   }
 
+  /// Преобразуем ProfileViewModel в представление, подходящее для TableView
   private func bindTableView(_ viewModel: Driver<ProfileViewModel>) {
-    // Преобразуем ProfileViewModel в представление, подходящее для TableView
     let sectionsSource = viewModel.map { viewModel -> [Section] in
 
       let emailItem: RowItem
-      if let email = viewModel.email.model {
+      if let email = viewModel.email.maybeText {
         emailItem = .email(TitledText(title: viewModel.email.title, text: email))
       } else {
         emailItem = .addEmail(viewModel.email.title)
       }
 
       let rowItems: [RowItem] = [
-        .titleText(viewModel.firstName),
-        .titleText(viewModel.lastName),
-        .titleOptionalText(viewModel.middleName),
-        .titleText(viewModel.login),
-        .titleOptionalText(viewModel.phone),
+        .contactField(viewModel.firstName),
+        .contactField(viewModel.lastName),
+        .contactOptionalText(viewModel.middleName),
+        .contactField(viewModel.login),
+        .contactOptionalText(viewModel.phone),
         emailItem,
         .myOrders(viewModel.myOrders)
       ]
@@ -111,20 +122,48 @@ extension ProfileTableViewController {
   private enum TableViewHelper: Namespace {
     static func makeCellForRowDataSource(vc: ProfileTableViewController)
       -> RxTableViewSectionedAnimatedDataSource<Section>.ConfigureCell {
-      return { _, _, _, item -> UITableViewCell in
+      return { _, tableView, indexPath, item -> UITableViewCell in
         switch item {
-        case .titleText:
-          return UITableViewCell()
-        case .titleOptionalText:
-          return UITableViewCell()
-        case .addEmail:
-          return UITableViewCell()
-        case .email(let email):
-          return UITableViewCell()
-        case .myOrders:
-          return UITableViewCell()
+        case .contactField(let viewModel):
+          let cell: ContactFieldCell = tableView.dequeue(forIndexPath: indexPath)
+          cell.view.setTitle(viewModel.title, text: viewModel.text)
+          return cell
+          
+        case .contactOptionalText(let viewModel):
+          let cell: ContactFieldCell = tableView.dequeue(forIndexPath: indexPath)
+          cell.view.setTitle(viewModel.title, text: viewModel.maybeText)
+          return cell
+          
+        case .addEmail(let title):
+          let cell: DisclosureTextCell = tableView.dequeue(forIndexPath: indexPath)
+          cell.view.setText(title)
+          return cell
+          
+        case .email(let viewModel):
+          let cell: ContactFieldCell = tableView.dequeue(forIndexPath: indexPath)
+          cell.view.setTitle(viewModel.title, text: viewModel.text)
+          return cell
+          
+        case .myOrders(let title):
+          let cell: DisclosureTextCell = tableView.dequeue(forIndexPath: indexPath)
+          cell.view.setText(title)
+          return cell
         }
       }
+    }
+  }
+}
+
+extension ProfileTableViewController: UITableViewDelegate {
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    let rowItem = dataSource[indexPath]
+
+    switch rowItem {
+    case .addEmail: emailUpdateTap.accept(Void())
+    case .email: emailUpdateTap.accept(Void())
+    case .contactField: break
+    case .contactOptionalText: break
+    case .myOrders: myOrdersTap.accept(Void())
     }
   }
 }
@@ -152,16 +191,16 @@ extension ProfileTableViewController {
   }
 
   private enum RowItem: Hashable, IdentifiableType {
-    case titleText(TitledText)
-    case titleOptionalText(TitledModel<String?>)
+    case contactField(TitledText)
+    case contactOptionalText(TitledOptionalText)
     case addEmail(String)
     case email(TitledText)
     case myOrders(String)
 
     var identity: String {
       switch self {
-      case .titleText(let viewModel): return viewModel.title
-      case .titleOptionalText(let viewModel): return viewModel.title
+      case .contactField(let viewModel): return viewModel.title
+      case .contactOptionalText(let viewModel): return viewModel.title
       case .addEmail(let message): return message
       case .email(let viewModel): return viewModel.title
       case .myOrders(let text): return text

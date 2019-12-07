@@ -52,19 +52,15 @@ public struct TitledText: Hashable {
 }
 
 /// Для случаев, когда для отображения в UI'е нужна модель, дополненная заголовоком или пояснением
-public struct TitledModel<T> {
+public struct TitledOptionalText: Hashable {
   public let title: String
-  public let model: T
+  public let maybeText: String?
 
-  public init(title: String, model: T) {
+  public init(title: String, maybeText: String?) {
     self.title = title
-    self.model = model
+    self.maybeText = maybeText
   }
 }
-
-extension TitledModel: Equatable where T: Equatable {}
-
-extension TitledModel: Hashable where T: Hashable {}
 
 /// Generic решение для closured-based инициализации
 /// For class instances only. Value-types are not supported

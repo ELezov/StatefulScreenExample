@@ -54,6 +54,10 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="HgA-Aw-ocO"/>
                     </view>
+                    <connections>
+                        <outlet property="scrollView" destination="hGP-tf-US0" id="Dq5-b9-jVH"/>
+                        <outlet property="stackView" destination="T8w-9q-YGy" id="fp5-Zh-kli"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k0X-am-vwV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

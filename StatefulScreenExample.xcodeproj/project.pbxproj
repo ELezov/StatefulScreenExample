@@ -21,6 +21,12 @@
 		8E71C17D2399A1B90051C45E /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E71C1742399A1B90051C45E /* RxCocoa.framework */; };
 		8E71C17F2399A1B90051C45E /* Differentiator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E71C1752399A1B90051C45E /* Differentiator.framework */; };
 		8E71C1812399A1BA0051C45E /* RxRelay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E71C1762399A1B90051C45E /* RxRelay.framework */; };
+		8E73C893239C4411000A7F8A /* TableViewRegisterable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E73C892239C4411000A7F8A /* TableViewRegisterable.swift */; };
+		8E73C898239C4482000A7F8A /* UITableViewXibContainerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E73C897239C4482000A7F8A /* UITableViewXibContainerCell.swift */; };
+		8E73C8A5239C45AE000A7F8A /* ContactFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E73C8A3239C45AE000A7F8A /* ContactFieldView.swift */; };
+		8E73C8A6239C45AE000A7F8A /* ContactFieldView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E73C8A4239C45AE000A7F8A /* ContactFieldView.xib */; };
+		8E73C8AD239C493A000A7F8A /* DisclosureTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E73C8AB239C493A000A7F8A /* DisclosureTextView.swift */; };
+		8E73C8AE239C493A000A7F8A /* DisclosureTextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E73C8AC239C493A000A7F8A /* DisclosureTextView.xib */; };
 		8EFD7C0D239BF000002EBA60 /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFD7C06239BF000002EBA60 /* ProfilePresenter.swift */; };
 		8EFD7C0E239BF000002EBA60 /* ProfileRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFD7C07239BF000002EBA60 /* ProfileRouter.swift */; };
 		8EFD7C0F239BF000002EBA60 /* ProfileStackViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8EFD7C08239BF000002EBA60 /* ProfileStackViewController.storyboard */; };
@@ -40,6 +46,7 @@
 		8EFD7C3B239C1680002EBA60 /* NibLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFD7C3A239C1680002EBA60 /* NibLoadable.swift */; };
 		8EFD7C3D239C16CB002EBA60 /* ErrorMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFD7C3C239C16CB002EBA60 /* ErrorMessageView.swift */; };
 		8EFD7C42239C1A04002EBA60 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFD7C41239C1A04002EBA60 /* UIView+Extensions.swift */; };
+		8EFD7C4D239C22A4002EBA60 /* Rx+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFD7C4C239C22A4002EBA60 /* Rx+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +87,12 @@
 		8E71C1742399A1B90051C45E /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = Carthage/Build/iOS/RxCocoa.framework; sourceTree = "<group>"; };
 		8E71C1752399A1B90051C45E /* Differentiator.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Differentiator.framework; path = Carthage/Build/iOS/Differentiator.framework; sourceTree = "<group>"; };
 		8E71C1762399A1B90051C45E /* RxRelay.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxRelay.framework; path = Carthage/Build/iOS/RxRelay.framework; sourceTree = "<group>"; };
+		8E73C892239C4411000A7F8A /* TableViewRegisterable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewRegisterable.swift; sourceTree = "<group>"; };
+		8E73C897239C4482000A7F8A /* UITableViewXibContainerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewXibContainerCell.swift; sourceTree = "<group>"; };
+		8E73C8A3239C45AE000A7F8A /* ContactFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactFieldView.swift; sourceTree = "<group>"; };
+		8E73C8A4239C45AE000A7F8A /* ContactFieldView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContactFieldView.xib; sourceTree = "<group>"; };
+		8E73C8AB239C493A000A7F8A /* DisclosureTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisclosureTextView.swift; sourceTree = "<group>"; };
+		8E73C8AC239C493A000A7F8A /* DisclosureTextView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DisclosureTextView.xib; sourceTree = "<group>"; };
 		8EFD7C06239BF000002EBA60 /* ProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
 		8EFD7C07239BF000002EBA60 /* ProfileRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRouter.swift; sourceTree = "<group>"; };
 		8EFD7C08239BF000002EBA60 /* ProfileStackViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ProfileStackViewController.storyboard; sourceTree = "<group>"; };
@@ -99,6 +112,7 @@
 		8EFD7C3A239C1680002EBA60 /* NibLoadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibLoadable.swift; sourceTree = "<group>"; };
 		8EFD7C3C239C16CB002EBA60 /* ErrorMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMessageView.swift; sourceTree = "<group>"; };
 		8EFD7C41239C1A04002EBA60 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
+		8EFD7C4C239C22A4002EBA60 /* Rx+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Rx+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -206,6 +220,9 @@
 				8EFD7C26239BF7D1002EBA60 /* StoryboardInstantiatable.swift */,
 				8EFD7C3A239C1680002EBA60 /* NibLoadable.swift */,
 				8EFD7C41239C1A04002EBA60 /* UIView+Extensions.swift */,
+				8EFD7C4C239C22A4002EBA60 /* Rx+Extension.swift */,
+				8E73C892239C4411000A7F8A /* TableViewRegisterable.swift */,
+				8E73C897239C4482000A7F8A /* UITableViewXibContainerCell.swift */,
 			);
 			path = Tooling;
 			sourceTree = "<group>";
@@ -223,6 +240,17 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		8E73C888239C2F1C000A7F8A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8E73C8A3239C45AE000A7F8A /* ContactFieldView.swift */,
+				8E73C8A4239C45AE000A7F8A /* ContactFieldView.xib */,
+				8E73C8AB239C493A000A7F8A /* DisclosureTextView.swift */,
+				8E73C8AC239C493A000A7F8A /* DisclosureTextView.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		8EFD7C14239BF005002EBA60 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
@@ -233,6 +261,7 @@
 				8EFD7C06239BF000002EBA60 /* ProfilePresenter.swift */,
 				8EFD7C20239BF5B3002EBA60 /* TableViewController */,
 				8EFD7C1F239BF5A5002EBA60 /* StackViewController */,
+				8E73C888239C2F1C000A7F8A /* Views */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -378,8 +407,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8E73C8AE239C493A000A7F8A /* DisclosureTextView.xib in Resources */,
 				8E71C14723999E940051C45E /* LaunchScreen.storyboard in Resources */,
 				8E71C14423999E940051C45E /* Assets.xcassets in Resources */,
+				8E73C8A6239C45AE000A7F8A /* ContactFieldView.xib in Resources */,
 				8EFD7C2B239BF95B002EBA60 /* ProfileTableViewController.storyboard in Resources */,
 				8EFD7C0F239BF000002EBA60 /* ProfileStackViewController.storyboard in Resources */,
 				8E71C14223999E920051C45E /* Main.storyboard in Resources */,
@@ -443,20 +474,25 @@
 				8EFD7C10239BF000002EBA60 /* ProfileStackViewController.swift in Sources */,
 				8E71C13F23999E920051C45E /* ViewController.swift in Sources */,
 				8E71C13B23999E920051C45E /* AppDelegate.swift in Sources */,
+				8EFD7C4D239C22A4002EBA60 /* Rx+Extension.swift in Sources */,
 				8EFD7C3B239C1680002EBA60 /* NibLoadable.swift in Sources */,
 				8EFD7C27239BF7D1002EBA60 /* StoryboardInstantiatable.swift in Sources */,
 				8EFD7C0D239BF000002EBA60 /* ProfilePresenter.swift in Sources */,
+				8E73C898239C4482000A7F8A /* UITableViewXibContainerCell.swift in Sources */,
 				8EFD7C39239C1504002EBA60 /* LoadingIndicatorView.swift in Sources */,
 				8E71C13D23999E920051C45E /* SceneDelegate.swift in Sources */,
 				8EFD7C2A239BF95B002EBA60 /* ProfileTableViewController.swift in Sources */,
 				8EFD7C25239BF77A002EBA60 /* VIPBinder.swift in Sources */,
 				8EFD7C1C239BF15C002EBA60 /* ProfileServiceImp.swift in Sources */,
 				8EFD7C0E239BF000002EBA60 /* ProfileRouter.swift in Sources */,
+				8E73C8AD239C493A000A7F8A /* DisclosureTextView.swift in Sources */,
 				8EFD7C42239C1A04002EBA60 /* UIView+Extensions.swift in Sources */,
+				8E73C893239C4411000A7F8A /* TableViewRegisterable.swift in Sources */,
 				8EFD7C2D239BFB20002EBA60 /* Dependency.swift in Sources */,
 				8EFD7C11239BF000002EBA60 /* ProfileProtocols.swift in Sources */,
 				8EFD7C3D239C16CB002EBA60 /* ErrorMessageView.swift in Sources */,
 				8EFD7C1E239BF582002EBA60 /* Tooling.swift in Sources */,
+				8E73C8A5239C45AE000A7F8A /* ContactFieldView.swift in Sources */,
 				8EFD7C13239BF000002EBA60 /* ProfileInteractor.swift in Sources */,
 				8EFD7C12239BF000002EBA60 /* ProfileBuilder.swift in Sources */,
 				8EFD7C1A239BF0A1002EBA60 /* ProfileService.swift in Sources */,
