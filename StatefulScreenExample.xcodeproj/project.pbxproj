@@ -21,6 +21,25 @@
 		8E71C17D2399A1B90051C45E /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E71C1742399A1B90051C45E /* RxCocoa.framework */; };
 		8E71C17F2399A1B90051C45E /* Differentiator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E71C1752399A1B90051C45E /* Differentiator.framework */; };
 		8E71C1812399A1BA0051C45E /* RxRelay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E71C1762399A1B90051C45E /* RxRelay.framework */; };
+		8EFD7C0D239BF000002EBA60 /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFD7C06239BF000002EBA60 /* ProfilePresenter.swift */; };
+		8EFD7C0E239BF000002EBA60 /* ProfileRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFD7C07239BF000002EBA60 /* ProfileRouter.swift */; };
+		8EFD7C0F239BF000002EBA60 /* ProfileStackViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8EFD7C08239BF000002EBA60 /* ProfileStackViewController.storyboard */; };
+		8EFD7C10239BF000002EBA60 /* ProfileStackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFD7C09239BF000002EBA60 /* ProfileStackViewController.swift */; };
+		8EFD7C11239BF000002EBA60 /* ProfileProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFD7C0A239BF000002EBA60 /* ProfileProtocols.swift */; };
+		8EFD7C12239BF000002EBA60 /* ProfileBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFD7C0B239BF000002EBA60 /* ProfileBuilder.swift */; };
+		8EFD7C13239BF000002EBA60 /* ProfileInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFD7C0C239BF000002EBA60 /* ProfileInteractor.swift */; };
+		8EFD7C1A239BF0A1002EBA60 /* ProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFD7C19239BF0A1002EBA60 /* ProfileService.swift */; };
+		8EFD7C1C239BF15C002EBA60 /* ProfileServiceImp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFD7C1B239BF15C002EBA60 /* ProfileServiceImp.swift */; };
+		8EFD7C1E239BF582002EBA60 /* Tooling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFD7C1D239BF582002EBA60 /* Tooling.swift */; };
+		8EFD7C25239BF77A002EBA60 /* VIPBinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFD7C24239BF77A002EBA60 /* VIPBinder.swift */; };
+		8EFD7C27239BF7D1002EBA60 /* StoryboardInstantiatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFD7C26239BF7D1002EBA60 /* StoryboardInstantiatable.swift */; };
+		8EFD7C2A239BF95B002EBA60 /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFD7C28239BF95B002EBA60 /* ProfileTableViewController.swift */; };
+		8EFD7C2B239BF95B002EBA60 /* ProfileTableViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8EFD7C29239BF95B002EBA60 /* ProfileTableViewController.storyboard */; };
+		8EFD7C2D239BFB20002EBA60 /* Dependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFD7C2C239BFB20002EBA60 /* Dependency.swift */; };
+		8EFD7C39239C1504002EBA60 /* LoadingIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFD7C38239C1504002EBA60 /* LoadingIndicatorView.swift */; };
+		8EFD7C3B239C1680002EBA60 /* NibLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFD7C3A239C1680002EBA60 /* NibLoadable.swift */; };
+		8EFD7C3D239C16CB002EBA60 /* ErrorMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFD7C3C239C16CB002EBA60 /* ErrorMessageView.swift */; };
+		8EFD7C42239C1A04002EBA60 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFD7C41239C1A04002EBA60 /* UIView+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +80,25 @@
 		8E71C1742399A1B90051C45E /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = Carthage/Build/iOS/RxCocoa.framework; sourceTree = "<group>"; };
 		8E71C1752399A1B90051C45E /* Differentiator.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Differentiator.framework; path = Carthage/Build/iOS/Differentiator.framework; sourceTree = "<group>"; };
 		8E71C1762399A1B90051C45E /* RxRelay.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxRelay.framework; path = Carthage/Build/iOS/RxRelay.framework; sourceTree = "<group>"; };
+		8EFD7C06239BF000002EBA60 /* ProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
+		8EFD7C07239BF000002EBA60 /* ProfileRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRouter.swift; sourceTree = "<group>"; };
+		8EFD7C08239BF000002EBA60 /* ProfileStackViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ProfileStackViewController.storyboard; sourceTree = "<group>"; };
+		8EFD7C09239BF000002EBA60 /* ProfileStackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileStackViewController.swift; sourceTree = "<group>"; };
+		8EFD7C0A239BF000002EBA60 /* ProfileProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileProtocols.swift; sourceTree = "<group>"; };
+		8EFD7C0B239BF000002EBA60 /* ProfileBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileBuilder.swift; sourceTree = "<group>"; };
+		8EFD7C0C239BF000002EBA60 /* ProfileInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInteractor.swift; sourceTree = "<group>"; };
+		8EFD7C19239BF0A1002EBA60 /* ProfileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileService.swift; sourceTree = "<group>"; };
+		8EFD7C1B239BF15C002EBA60 /* ProfileServiceImp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileServiceImp.swift; sourceTree = "<group>"; };
+		8EFD7C1D239BF582002EBA60 /* Tooling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tooling.swift; sourceTree = "<group>"; };
+		8EFD7C24239BF77A002EBA60 /* VIPBinder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VIPBinder.swift; sourceTree = "<group>"; };
+		8EFD7C26239BF7D1002EBA60 /* StoryboardInstantiatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardInstantiatable.swift; sourceTree = "<group>"; };
+		8EFD7C28239BF95B002EBA60 /* ProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
+		8EFD7C29239BF95B002EBA60 /* ProfileTableViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ProfileTableViewController.storyboard; sourceTree = "<group>"; };
+		8EFD7C2C239BFB20002EBA60 /* Dependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dependency.swift; sourceTree = "<group>"; };
+		8EFD7C38239C1504002EBA60 /* LoadingIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingIndicatorView.swift; sourceTree = "<group>"; };
+		8EFD7C3A239C1680002EBA60 /* NibLoadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibLoadable.swift; sourceTree = "<group>"; };
+		8EFD7C3C239C16CB002EBA60 /* ErrorMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMessageView.swift; sourceTree = "<group>"; };
+		8EFD7C41239C1A04002EBA60 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +157,8 @@
 			isa = PBXGroup;
 			children = (
 				8E71C16B23999EB10051C45E /* Tooling */,
+				8EFD7C18239BF085002EBA60 /* Services */,
+				8EFD7C37239C14DB002EBA60 /* CommonViews */,
 				8E71C16A23999EA90051C45E /* RIBs */,
 				8E71C13A23999E920051C45E /* AppDelegate.swift */,
 				8E71C13C23999E920051C45E /* SceneDelegate.swift */,
@@ -150,6 +190,8 @@
 		8E71C16A23999EA90051C45E /* RIBs */ = {
 			isa = PBXGroup;
 			children = (
+				8EFD7C2C239BFB20002EBA60 /* Dependency.swift */,
+				8EFD7C14239BF005002EBA60 /* Profile */,
 				8E71C13E23999E920051C45E /* ViewController.swift */,
 				8E71C14023999E920051C45E /* Main.storyboard */,
 			);
@@ -159,6 +201,11 @@
 		8E71C16B23999EB10051C45E /* Tooling */ = {
 			isa = PBXGroup;
 			children = (
+				8EFD7C1D239BF582002EBA60 /* Tooling.swift */,
+				8EFD7C24239BF77A002EBA60 /* VIPBinder.swift */,
+				8EFD7C26239BF7D1002EBA60 /* StoryboardInstantiatable.swift */,
+				8EFD7C3A239C1680002EBA60 /* NibLoadable.swift */,
+				8EFD7C41239C1A04002EBA60 /* UIView+Extensions.swift */,
 			);
 			path = Tooling;
 			sourceTree = "<group>";
@@ -174,6 +221,56 @@
 				8E71C1732399A1B90051C45E /* RxSwift.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8EFD7C14239BF005002EBA60 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				8EFD7C0A239BF000002EBA60 /* ProfileProtocols.swift */,
+				8EFD7C0B239BF000002EBA60 /* ProfileBuilder.swift */,
+				8EFD7C07239BF000002EBA60 /* ProfileRouter.swift */,
+				8EFD7C0C239BF000002EBA60 /* ProfileInteractor.swift */,
+				8EFD7C06239BF000002EBA60 /* ProfilePresenter.swift */,
+				8EFD7C20239BF5B3002EBA60 /* TableViewController */,
+				8EFD7C1F239BF5A5002EBA60 /* StackViewController */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		8EFD7C18239BF085002EBA60 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				8EFD7C19239BF0A1002EBA60 /* ProfileService.swift */,
+				8EFD7C1B239BF15C002EBA60 /* ProfileServiceImp.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		8EFD7C1F239BF5A5002EBA60 /* StackViewController */ = {
+			isa = PBXGroup;
+			children = (
+				8EFD7C09239BF000002EBA60 /* ProfileStackViewController.swift */,
+				8EFD7C08239BF000002EBA60 /* ProfileStackViewController.storyboard */,
+			);
+			path = StackViewController;
+			sourceTree = "<group>";
+		};
+		8EFD7C20239BF5B3002EBA60 /* TableViewController */ = {
+			isa = PBXGroup;
+			children = (
+				8EFD7C28239BF95B002EBA60 /* ProfileTableViewController.swift */,
+				8EFD7C29239BF95B002EBA60 /* ProfileTableViewController.storyboard */,
+			);
+			path = TableViewController;
+			sourceTree = "<group>";
+		};
+		8EFD7C37239C14DB002EBA60 /* CommonViews */ = {
+			isa = PBXGroup;
+			children = (
+				8EFD7C38239C1504002EBA60 /* LoadingIndicatorView.swift */,
+				8EFD7C3C239C16CB002EBA60 /* ErrorMessageView.swift */,
+			);
+			path = CommonViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -283,6 +380,8 @@
 			files = (
 				8E71C14723999E940051C45E /* LaunchScreen.storyboard in Resources */,
 				8E71C14423999E940051C45E /* Assets.xcassets in Resources */,
+				8EFD7C2B239BF95B002EBA60 /* ProfileTableViewController.storyboard in Resources */,
+				8EFD7C0F239BF000002EBA60 /* ProfileStackViewController.storyboard in Resources */,
 				8E71C14223999E920051C45E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -341,9 +440,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8EFD7C10239BF000002EBA60 /* ProfileStackViewController.swift in Sources */,
 				8E71C13F23999E920051C45E /* ViewController.swift in Sources */,
 				8E71C13B23999E920051C45E /* AppDelegate.swift in Sources */,
+				8EFD7C3B239C1680002EBA60 /* NibLoadable.swift in Sources */,
+				8EFD7C27239BF7D1002EBA60 /* StoryboardInstantiatable.swift in Sources */,
+				8EFD7C0D239BF000002EBA60 /* ProfilePresenter.swift in Sources */,
+				8EFD7C39239C1504002EBA60 /* LoadingIndicatorView.swift in Sources */,
 				8E71C13D23999E920051C45E /* SceneDelegate.swift in Sources */,
+				8EFD7C2A239BF95B002EBA60 /* ProfileTableViewController.swift in Sources */,
+				8EFD7C25239BF77A002EBA60 /* VIPBinder.swift in Sources */,
+				8EFD7C1C239BF15C002EBA60 /* ProfileServiceImp.swift in Sources */,
+				8EFD7C0E239BF000002EBA60 /* ProfileRouter.swift in Sources */,
+				8EFD7C42239C1A04002EBA60 /* UIView+Extensions.swift in Sources */,
+				8EFD7C2D239BFB20002EBA60 /* Dependency.swift in Sources */,
+				8EFD7C11239BF000002EBA60 /* ProfileProtocols.swift in Sources */,
+				8EFD7C3D239C16CB002EBA60 /* ErrorMessageView.swift in Sources */,
+				8EFD7C1E239BF582002EBA60 /* Tooling.swift in Sources */,
+				8EFD7C13239BF000002EBA60 /* ProfileInteractor.swift in Sources */,
+				8EFD7C12239BF000002EBA60 /* ProfileBuilder.swift in Sources */,
+				8EFD7C1A239BF0A1002EBA60 /* ProfileService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -523,6 +639,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = StatefulScreenExample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -545,6 +662,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = StatefulScreenExample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
