@@ -92,6 +92,14 @@ extension ProfileInteractor: IOTransformer {
       default: break
       }
     }).disposed(by: disposeBag)
+    
+    viewOutput.myOrdersTap.withLatestFrom(readonlyState).subscribe(onNext: { [weak self] state in
+      switch state {
+      case .dataLoaded:
+        self?.router?.routeToOrdersList()
+      default: break
+      }
+    }).disposed(by: disposeBag)
   }
 }
 

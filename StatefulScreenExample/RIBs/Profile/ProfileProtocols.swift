@@ -34,6 +34,8 @@ protocol ProfileRouting: ViewableRouting {
   
   /// Переход на экран добавления e-mail'a
   func routeToEmailAddition()
+  
+  func routeToOrdersList()
 }
 
 protocol ProfilePresentable: Presentable {}

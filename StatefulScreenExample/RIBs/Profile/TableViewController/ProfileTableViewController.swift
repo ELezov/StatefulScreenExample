@@ -38,6 +38,8 @@ final class ProfileTableViewController: UIViewController, ProfileViewControllabl
 
 extension ProfileTableViewController {
   private func initialSetup() {
+    title = "TableView Profile"
+    
     tableView.isVisible = false
 
     loadingIndicatorView.isVisible = false

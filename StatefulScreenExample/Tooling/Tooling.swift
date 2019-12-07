@@ -62,6 +62,10 @@ public struct TitledOptionalText: Hashable {
   }
 }
 
+public struct Empty: Hashable, Codable {
+  public init() {}
+}
+
 /// Generic решение для closured-based инициализации
 /// For class instances only. Value-types are not supported
 public func configured<T: AnyObject>(object: T, closure: (_ object: T) -> Void) -> T {

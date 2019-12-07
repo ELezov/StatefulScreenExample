@@ -13,22 +13,22 @@ extension ObservableType {
   public func compactMap<R>() -> Observable<R> where Element == R? {
     return filter { $0 != nil }.map { $0! }
   }
-  
+
   public func filteredByState<State>(_ state: Observable<State>,
                                      filter predicate: @escaping (State) -> Bool) -> Observable<Element> {
     let predicateAdapter: (Element, State) -> Bool = { _, state -> Bool in
       predicate(state)
     }
-    
+
     return withLatestFrom(state, resultSelector: latestFromBothValues())
       .filter(predicateAdapter)
       .map { value, _ in value }
   }
-  
+
   public func mapAsVoid() -> Observable<Void> {
     return map { _ in Void() }
   }
-  
+
   /// Оператор нужен для случаев, когда .asDriver(onErrorJustReturn:) не получается использовать
   /// Например для Driver<Profile> мы его исапользовать не можем, т.к создать профайл не получится, он приходт с бэка
   /// Если можно использовать стандартный оператор .asDriver(onErrorJustReturn:), то лучше использовать его
@@ -37,6 +37,14 @@ extension ObservableType {
     return signal
   }
 }
+
+//extension ControlEvent {
+//  public func mapAsVoid() -> ControlEvent<Void> {
+//    let voidEvents = map { _ in Void() }
+//
+//    return ControlEvent<Void>(events: voidEvents)
+//  }
+//}
 
 extension SharedSequenceConvertibleType {
   /// Для Driver'ов и Signal'ов

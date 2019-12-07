@@ -45,6 +45,8 @@ final class ProfileStackViewController: UIViewController, ProfileViewControllabl
 
 extension ProfileStackViewController {
   private func initialSetup() {
+    title = "StackView Profile"
+    
     scrollView.isVisible = false
     
     loadingIndicatorView.isVisible = false

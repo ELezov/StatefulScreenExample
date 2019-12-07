@@ -30,7 +30,7 @@ final class ProfileServiceImp: ProfileService {
     
     profileRequestsCount += 1
     
-    let delay = Double.random(in: 1...2)
+    let delay = Double.random(in: 0.25...3)
     DispatchQueue.global(qos: .default).asyncAfter(deadline: .now() + delay) {
       completion(result)
     }

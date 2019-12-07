@@ -9,8 +9,27 @@
 import RIBs
 
 final class RootNavigationRouter: LaunchRouter<RootNavigationInteractable, RootNavigationViewControllable>, RootNavigationRouting {
-    override init(interactor: RootNavigationInteractable, viewController: RootNavigationViewControllable) {
-        super.init(interactor: interactor, viewController: viewController)
-        interactor.router = self
-    }
+  private let mainScreenBuilder: MainScreenBuildable
+  
+  init(interactor: RootNavigationInteractable,
+       viewController: RootNavigationViewControllable,
+       mainScreenBuilder: MainScreenBuildable) {
+    self.mainScreenBuilder = mainScreenBuilder
+    super.init(interactor: interactor, viewController: viewController)
+    interactor.router = self
+  }
+  
+  override func didLoad() {
+    super.didLoad()
+    
+    routeToMain()
+  }
+  
+  func routeToMain() {
+    let router = mainScreenBuilder.build()
+    
+    attachChild(router)
+    
+    self.viewController.setAsRootViewController(router.viewControllable)
+  }
 }

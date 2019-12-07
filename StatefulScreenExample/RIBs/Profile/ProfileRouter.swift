@@ -22,6 +22,10 @@ final class ProfileRouter: ViewableRouter<ProfileInteractable, ProfileViewContro
     showStubAlert(title: "Добавление e-mail")
   }
   
+  func routeToOrdersList() {
+    showStubAlert(title: "Список заказов")
+  }
+  
   private func showStubAlert(title: String) {
     let message = "Вместо этого сообщения в боевом проекте производится роутинг на нужный экран"
     

@@ -10,5 +10,5 @@ import RIBs
 import RxSwift
 
 final class RootNavigationInteractor: Interactor, RootNavigationInteractable {
-    weak var router: RootNavigationRouting?
+  weak var router: RootNavigationRouting?
 }

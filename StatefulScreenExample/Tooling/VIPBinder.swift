@@ -78,11 +78,13 @@ public enum VIPBinder: Namespace {
   
   /// Вариант биндинга, когда в модуле отсутствует Preseneter
   @discardableResult
-  public static func bind<V: BindableView, I: IOTransformer>(view: V, interactor: I) -> VIOutput<V.Output, I.Output>
+  public static func bind<V: BindableView & UIViewController, I: IOTransformer>(viewController: V,
+                                                                                interactor: I) -> VIOutput<V.Output, I.Output>
     where V.Output == I.Input, I.Output == V.Input {
-    let viewOutput = view.getOutput()
+    viewController.loadViewIfNeeded()
+    let viewOutput = viewController.getOutput()
     let interactorOutput = interactor.transform(viewOutput)
-    view.bindWith(interactorOutput)
+    viewController.bindWith(interactorOutput)
     
     return (viewOutput: viewOutput, interactorOutput: interactorOutput)
   }

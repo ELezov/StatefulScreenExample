@@ -19,18 +19,15 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="T8w-9q-YGy">
-                                        <rect key="frame" x="0.0" y="0.0" width="148" height="31"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="0.0"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yYM-AM-DmP" userLabel="StubView">
-                                                <rect key="frame" x="0.0" y="0.0" width="148" height="0.0"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="0.0"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" id="yFu-cL-p1N"/>
                                                 </constraints>
                                             </view>
-                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="u1x-To-odN">
-                                                <rect key="frame" x="0.0" y="0.0" width="150" height="31"/>
-                                            </switch>
                                         </subviews>
                                     </stackView>
                                 </subviews>
@@ -38,7 +35,7 @@
                                     <constraint firstAttribute="trailing" secondItem="T8w-9q-YGy" secondAttribute="trailing" id="NXg-S8-ssd"/>
                                     <constraint firstItem="T8w-9q-YGy" firstAttribute="top" secondItem="hGP-tf-US0" secondAttribute="top" id="Prd-Zi-jjP"/>
                                     <constraint firstItem="T8w-9q-YGy" firstAttribute="leading" secondItem="hGP-tf-US0" secondAttribute="leading" id="axO-jp-tPk"/>
-                                    <constraint firstItem="T8w-9q-YGy" firstAttribute="width" secondItem="hGP-tf-US0" secondAttribute="width" multiplier="0.394265" id="u8Q-hS-Hdd"/>
+                                    <constraint firstItem="T8w-9q-YGy" firstAttribute="width" secondItem="hGP-tf-US0" secondAttribute="width" id="u8Q-hS-Hdd"/>
                                     <constraint firstAttribute="bottom" secondItem="T8w-9q-YGy" secondAttribute="bottom" id="xTL-OA-asw"/>
                                 </constraints>
                                 <viewLayoutGuide key="contentLayoutGuide" id="rhj-Sv-kpY"/>

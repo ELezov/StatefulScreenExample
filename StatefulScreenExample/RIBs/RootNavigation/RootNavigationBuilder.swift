@@ -8,19 +8,14 @@
 
 import RIBs
 
-final class RootNavigationComponent: Component<RootNavigationDependency> {}
+final class RootNavigationBuilder: Builder<RootDependency>, RootNavigationBuildable {
+  func build() -> LaunchRouting {
+    let viewController = RootNavigationViewController()
 
-final class RootNavigationBuilder: Builder<RootNavigationDependency>, RootNavigationBuildable {
+    let interactor = RootNavigationInteractor()
 
-    override init(dependency: RootNavigationDependency) {
-        super.init(dependency: dependency)
-    }
-
-    func build(withListener listener: RootNavigationListener) -> RootNavigationRouting {
-        let component = RootNavigationComponent(dependency: dependency)
-        let viewController = RootNavigationViewController.instantiateFromStoryboard()
-        let interactor = RootNavigationInteractor(presenter: viewController)
-        interactor.listener = listener
-        return RootNavigationRouter(interactor: interactor, viewController: viewController)
-    }
+    return RootNavigationRouter(interactor: interactor,
+                                viewController: viewController,
+                                mainScreenBuilder: MainScreenBuilder(dependency: dependency))
+  }
 }
