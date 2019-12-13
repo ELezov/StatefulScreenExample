@@ -18,7 +18,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="edm-EQ-T2e">
                                 <rect key="frame" x="16" y="16" width="343" height="261"/>
                                 <string key="text">В качестве демонстрации сделан экран профиля. У этого модуля есть 2 ViewController'a. Выглядят они одинаково, но сделаны с разной реализацией: на StackView и на TableView.
-Так сделано с целью демонатрации того, что Presenter и View не зависят друг от друга. В реальности, как правило, большинство модулей имеют 1 ViewController.
+Так сделано с целью демонстрации того, что Presenter и View не зависят друг от друга. В реальности, как правило, большинство модулей имеют 1 ViewController.
 Однако бывают исключения. Например это может быть полезно для A/B тестов, когда нужно проверить 2 разные вёрстки. Или в будущем, когда потребуется переезд на Swift UI :)</string>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                                 <nil key="textColor"/>

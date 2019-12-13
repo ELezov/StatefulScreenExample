@@ -15,9 +15,10 @@ final class ProfilePresenter: ProfilePresentable {}
 // MARK: - IOTransformer
 
 extension ProfilePresenter: IOTransformer {
+  /// Метод отвечает за преобразование состояния во ViewModel'и и сигналы (команды)
   func transform(_ state: Observable<ProfileInteractorState>) -> ProfilePresenterOutput {
     let viewModel = Helper.viewModel(state)
-    
+
     let isContentViewVisible = state.map { state -> Bool in
       switch state {
       case .dataLoaded:
@@ -51,10 +52,10 @@ extension ProfilePresenter: IOTransformer {
     // .distinctUntilChanged() - ⚠️ здесь этот оператор применять не нужно
     .asSignal(onErrorJustReturn: nil)
 
-    return .init(viewModel: viewModel,
-                 isContentViewVisible: isContentViewVisible,
-                 isLoadingIndicatorVisible: isLoadingIndicatorVisible,
-                 showError: showError)
+    return ProfilePresenterOutput(viewModel: viewModel,
+                                  isContentViewVisible: isContentViewVisible,
+                                  isLoadingIndicatorVisible: isLoadingIndicatorVisible,
+                                  showError: showError)
   }
 }
 

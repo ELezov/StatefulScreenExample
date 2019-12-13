@@ -52,6 +52,7 @@ final class ProfileInteractor: PresentableInteractor<ProfilePresentable>, Profil
 extension ProfileInteractor: IOTransformer {
   private typealias State = ProfileInteractorState
   
+  /// Метод производит биндинг переходов между всеми состояниями экрана.
   func transform(_ input: ProfileViewOutput) -> Observable<ProfileInteractorState> {
     let readonlyState = _state.asObservable()
     
@@ -104,8 +105,11 @@ extension ProfileInteractor: IOTransformer {
 }
 
 extension ProfileInteractor {
-  /// StateTransform реализует переходы между всеми состояниями
+  /// StateTransform реализует переходы между всеми состояниями. Функции должны быть чистыми и детерминированными
   private enum StateTransform: Namespace {
+    /// Переход из состояния LoadingError в IsLoading
+    /// - Parameters:
+    ///   - stateEntryAction: деятельность, которая выполняется при входе в состояние
     static func fromLoadingErrorToIsLoading(readonlyState: Observable<ProfileInteractorState>,
                                             retryButtonTap: ControlEvent<Void>,
                                             stateEntryAction: @escaping () -> Void,

@@ -49,13 +49,16 @@ final class ErrorMessageView: UIView, ResetableView {
   private func initialSetup() {
     backgroundColor = UIColor.black.withAlphaComponent(0.15)
     
+    button.translatesAutoresizingMaskIntoConstraints = false
     button.backgroundColor = .yellowMain
     button.setTitleColor(.black, for: .normal)
     
     button.addTarget(self, action: #selector(buttonTap), for: .touchUpInside)
     
+    titleLabel.numberOfLines = 0
+    titleLabel.textAlignment = .center
     titleLabel.translatesAutoresizingMaskIntoConstraints = false
-    button.translatesAutoresizingMaskIntoConstraints = false
+    
     
     addSubview(titleLabel)
     addSubview(button)
