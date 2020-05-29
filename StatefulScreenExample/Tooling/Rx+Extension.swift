@@ -36,6 +36,18 @@ extension ObservableType {
     let signal = map { element -> Element? in element }.asDriver(onErrorJustReturn: nil).compactMap()
     return signal
   }
+  
+  /// Отличается от обычного оператора take(_ count: Int) тем, что не завершает последовательность терминальным событием onCompleted.
+  public func take(prefix count: Int) -> RxSwift.Observable<Self.Element> {
+    if count < 1 {
+      return Observable.never()
+    } else {
+      return enumerated()
+        .flatMapLatest { index, element -> Observable<Element> in
+          index < count ? Observable.just(element) : Observable.never()
+      }
+    }
+  }
 }
 
 //extension ControlEvent {
@@ -62,4 +74,10 @@ extension SharedSequenceConvertibleType {
 public func latestFromBothValues<F, S>() -> ((F, S) -> (F, S)) {
   let bothValuesResult: (F, S) -> (F, S) = { firstValue, secondValue in (firstValue, secondValue) }
   return bothValuesResult
+}
+
+extension PublishRelay {
+  public func asControlEvent() -> ControlEvent<Element> {
+    ControlEvent(events: self)
+  }
 }

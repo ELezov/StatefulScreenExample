@@ -14,6 +14,8 @@ final class ProfileStackViewController: UIViewController, ProfileViewControllabl
   @IBOutlet private weak var scrollView: UIScrollView!
   @IBOutlet private weak var stackView: UIStackView!
   
+  private let refreshControl = UIRefreshControl()
+  
   private let firstNameView = ContactFieldView.loadFromNib()
   private let lastNameView = ContactFieldView.loadFromNib()
   private let middleNameView = ContactFieldView.loadFromNib()
@@ -31,9 +33,7 @@ final class ProfileStackViewController: UIViewController, ProfileViewControllabl
   
   // MARK: View Events
   
-  private let emailUpdateTap = PublishRelay<Void>()
-  private let retryButtonTap = PublishRelay<Void>()
-  private let myOrdersTap = PublishRelay<Void>()
+  private let viewOutput = ViewOutput()
   
   private let disposeBag = DisposeBag()
   
@@ -47,10 +47,8 @@ extension ProfileStackViewController {
   private func initialSetup() {
     title = "StackView Profile"
     
-    scrollView.isVisible = false
-    
-    loadingIndicatorView.isVisible = false
-    
+    scrollView.refreshControl = refreshControl
+
     errorMessageView.isVisible = false
     
     view.addStretchedToBounds(subview: loadingIndicatorView)
@@ -74,19 +72,19 @@ extension ProfileStackViewController {
     do {
       let tapGesture = UITapGestureRecognizer()
       emailView.addGestureRecognizer(tapGesture)
-      tapGesture.rx.event.mapAsVoid().bind(to: emailUpdateTap).disposed(by: disposeBag)
+      tapGesture.rx.event.mapAsVoid().bind(to: viewOutput.$emailUpdateTap).disposed(by: disposeBag)
     }
     
     do {
       let tapGesture = UITapGestureRecognizer()
       addEmailView.addGestureRecognizer(tapGesture)
-      tapGesture.rx.event.mapAsVoid().bind(to: emailUpdateTap).disposed(by: disposeBag)
+      tapGesture.rx.event.mapAsVoid().bind(to: viewOutput.$emailUpdateTap).disposed(by: disposeBag)
     }
     
     do {
       let tapGesture = UITapGestureRecognizer()
       myOrdersView.addGestureRecognizer(tapGesture)
-      tapGesture.rx.event.mapAsVoid().bind(to: myOrdersTap).disposed(by: disposeBag)
+      tapGesture.rx.event.mapAsVoid().bind(to: viewOutput.$myOrdersTap).disposed(by: disposeBag)
     }
   }
 }
@@ -95,9 +93,7 @@ extension ProfileStackViewController {
 
 extension ProfileStackViewController: BindableView {
   func getOutput() -> ProfileViewOutput {
-    .init(emailUpdateTap: ControlEvent(events: emailUpdateTap),
-          myOrdersTap: ControlEvent(events: myOrdersTap),
-          retryButtonTap: ControlEvent(events: retryButtonTap))
+    viewOutput
   }
   
   func bindWith(_ input: ProfilePresenterOutput) {
@@ -105,8 +101,8 @@ extension ProfileStackViewController: BindableView {
     
     input.isContentViewVisible.drive(scrollView.rx.isVisible).disposed(by: disposeBag)
     
-    input.isLoadingIndicatorVisible.drive(loadingIndicatorView.rx.isVisible).disposed(by: disposeBag)
-    input.isLoadingIndicatorVisible.drive(loadingIndicatorView.indicatorView.rx.isAnimating).disposed(by: disposeBag)
+    input.initialLoadingIndicatorVisible.drive(loadingIndicatorView.rx.isVisible).disposed(by: disposeBag)
+    input.initialLoadingIndicatorVisible.drive(loadingIndicatorView.indicatorView.rx.isAnimating).disposed(by: disposeBag)
     
     input.showError.emit(onNext: { [unowned self] maybeViewModel in
       self.errorMessageView.isVisible = (maybeViewModel != nil)
@@ -115,10 +111,14 @@ extension ProfileStackViewController: BindableView {
         self.errorMessageView.resetToEmptyState()
         
         self.errorMessageView.setTitle(viewModel.title, buttonTitle: viewModel.buttonTitle, action: {
-          self.retryButtonTap.accept(Void())
+          self.viewOutput.$retryButtonTap.accept(Void())
         })
       }
     }).disposed(by: disposeBag)
+    
+    input.hideRefreshControl.emit(to: refreshControl.rx.endRefreshing).disposed(by: disposeBag)
+    
+    refreshControl.rx.controlEvent(.valueChanged).bind(to: viewOutput.$pullToRefresh).disposed(by: disposeBag)
   }
   
   private func bindViewModel(_ profileViewModel: Driver<ProfileViewModel>) {
@@ -163,3 +163,17 @@ extension ProfileStackViewController: BindableView {
 // MARK: - RibStoryboardInstantiatable
 
 extension ProfileStackViewController: RibStoryboardInstantiatable {}
+
+// MARK: - View Output
+
+extension ProfileStackViewController {
+  private struct ViewOutput: ProfileViewOutput {
+    @PublishControlEvent var emailUpdateTap: ControlEvent<Void>
+    
+    @PublishControlEvent var myOrdersTap: ControlEvent<Void>
+    
+    @PublishControlEvent var retryButtonTap: ControlEvent<Void>
+    
+    @PublishControlEvent  var pullToRefresh: ControlEvent<Void>
+  }
+}

@@ -19,27 +19,18 @@ extension ProfilePresenter: IOTransformer {
   func transform(_ state: Observable<ProfileInteractorState>) -> ProfilePresenterOutput {
     let viewModel = Helper.viewModel(state)
 
-    let isContentViewVisible = state.map { state -> Bool in
+    let isContentViewVisible = state.compactMap { state -> Void? in
+      // После загрузки 1-й порции данных контент всегда виден
       switch state {
-      case .dataLoaded:
-        return true
-      case .loadingError, .isLoading:
-        return false
+      case .dataLoaded: return Void()
+      case .loadingError, .isLoading: return nil
       }
     }
-    .distinctUntilChanged()
-    .asDriver(onErrorJustReturn: false)
+    .map { true }
+    .startWith(false)
+    .asDriverIgnoringError()
 
-    let isLoadingIndicatorVisible = state.map { state -> Bool in
-      switch state {
-      case .isLoading:
-        return true
-      case .loadingError, .dataLoaded:
-        return false
-      }
-    }
-    .distinctUntilChanged()
-    .asDriver(onErrorJustReturn: false)
+    let (initialLoadingIndicatorVisible, hideRefreshControl) = refreshLoadingIndicatorEvents(state: state)
 
     let showError = state.map { state -> ErrorMessageViewModel? in
       switch state {
@@ -54,7 +45,8 @@ extension ProfilePresenter: IOTransformer {
 
     return ProfilePresenterOutput(viewModel: viewModel,
                                   isContentViewVisible: isContentViewVisible,
-                                  isLoadingIndicatorVisible: isLoadingIndicatorVisible,
+                                  initialLoadingIndicatorVisible: initialLoadingIndicatorVisible,
+                                  hideRefreshControl: hideRefreshControl,
                                   showError: showError)
   }
 }

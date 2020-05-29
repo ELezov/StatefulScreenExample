@@ -16,6 +16,8 @@ final class ProfileTableViewController: UIViewController, ProfileViewControllabl
 
   private let loadingIndicatorView = LoadingIndicatorView()
   private let errorMessageView = ErrorMessageView()
+  
+  private let refreshControl = UIRefreshControl()
 
   private lazy var dataSource: RxTableViewSectionedAnimatedDataSource<Section> = {
     let makeCellForRowDataSource = TableViewHelper.makeCellForRowDataSource(vc: self)
@@ -24,9 +26,7 @@ final class ProfileTableViewController: UIViewController, ProfileViewControllabl
 
   // MARK: View Events
 
-  private let emailUpdateTap = PublishRelay<Void>()
-  private let retryButtonTap = PublishRelay<Void>()
-  private let myOrdersTap = PublishRelay<Void>()
+  private let viewOutput = ViewOutput()
 
   private let disposeBag = DisposeBag()
 
@@ -39,21 +39,19 @@ final class ProfileTableViewController: UIViewController, ProfileViewControllabl
 extension ProfileTableViewController {
   private func initialSetup() {
     title = "TableView Profile"
-    
-    tableView.isVisible = false
-
-    loadingIndicatorView.isVisible = false
 
     errorMessageView.isVisible = false
 
     view.addStretchedToBounds(subview: loadingIndicatorView)
     view.addStretchedToBounds(subview: errorMessageView)
+
+    tableView.refreshControl = refreshControl
     
     tableView.register(ContactFieldCell.self)
     tableView.register(DisclosureTextCell.self)
-    
+
     tableView.rx.setDelegate(self).disposed(by: disposeBag)
-    
+
     dataSource.animationConfiguration = AnimationConfiguration(insertAnimation: .fade,
                                                                reloadAnimation: .fade,
                                                                deleteAnimation: .fade)
@@ -64,9 +62,7 @@ extension ProfileTableViewController {
 
 extension ProfileTableViewController: BindableView {
   func getOutput() -> ProfileViewOutput {
-    .init(emailUpdateTap: ControlEvent(events: emailUpdateTap),
-          myOrdersTap: ControlEvent(events: myOrdersTap),
-          retryButtonTap: ControlEvent(events: retryButtonTap))
+    viewOutput
   }
 
   func bindWith(_ input: ProfilePresenterOutput) {
@@ -74,8 +70,8 @@ extension ProfileTableViewController: BindableView {
 
     input.isContentViewVisible.drive(tableView.rx.isVisible).disposed(by: disposeBag)
 
-    input.isLoadingIndicatorVisible.drive(loadingIndicatorView.rx.isVisible).disposed(by: disposeBag)
-    input.isLoadingIndicatorVisible.drive(loadingIndicatorView.indicatorView.rx.isAnimating).disposed(by: disposeBag)
+    input.initialLoadingIndicatorVisible.drive(loadingIndicatorView.rx.isVisible).disposed(by: disposeBag)
+    input.initialLoadingIndicatorVisible.drive(loadingIndicatorView.indicatorView.rx.isAnimating).disposed(by: disposeBag)
 
     input.showError.emit(onNext: { [weak self] maybeViewModel in
       self?.errorMessageView.isVisible = (maybeViewModel != nil)
@@ -84,10 +80,14 @@ extension ProfileTableViewController: BindableView {
         self?.errorMessageView.resetToEmptyState()
 
         self?.errorMessageView.setTitle(viewModel.title, buttonTitle: viewModel.buttonTitle, action: {
-          self?.retryButtonTap.accept(Void())
+          self?.viewOutput.$retryButtonTap.accept(Void())
         })
       }
     }).disposed(by: disposeBag)
+    
+    input.hideRefreshControl.emit(to: refreshControl.rx.endRefreshing).disposed(by: disposeBag)
+    
+    refreshControl.rx.controlEvent(.valueChanged).bind(to: viewOutput.$pullToRefresh).disposed(by: disposeBag)
   }
 
   /// Преобразуем ProfileViewModel в представление, подходящее для TableView
@@ -130,22 +130,22 @@ extension ProfileTableViewController {
           let cell: ContactFieldCell = tableView.dequeue(forIndexPath: indexPath)
           cell.view.setTitle(viewModel.title, text: viewModel.text)
           return cell
-          
+
         case .contactOptionalText(let viewModel):
           let cell: ContactFieldCell = tableView.dequeue(forIndexPath: indexPath)
           cell.view.setTitle(viewModel.title, text: viewModel.maybeText)
           return cell
-          
+
         case .addEmail(let title):
           let cell: DisclosureTextCell = tableView.dequeue(forIndexPath: indexPath)
           cell.view.setText(title)
           return cell
-          
+
         case .email(let viewModel):
           let cell: ContactFieldCell = tableView.dequeue(forIndexPath: indexPath)
           cell.view.setTitle(viewModel.title, text: viewModel.text)
           return cell
-          
+
         case .myOrders(let title):
           let cell: DisclosureTextCell = tableView.dequeue(forIndexPath: indexPath)
           cell.view.setText(title)
@@ -161,12 +161,30 @@ extension ProfileTableViewController: UITableViewDelegate {
     let rowItem = dataSource[indexPath]
 
     switch rowItem {
-    case .addEmail: emailUpdateTap.accept(Void())
-    case .email: emailUpdateTap.accept(Void())
+    case .addEmail: viewOutput.$emailUpdateTap.accept(Void())
+    case .email: viewOutput.$emailUpdateTap.accept(Void())
     case .contactField: break
     case .contactOptionalText: break
-    case .myOrders: myOrdersTap.accept(Void())
+    case .myOrders: viewOutput.$myOrdersTap.accept(Void())
     }
+  }
+}
+
+// MARK: - RibStoryboardInstantiatable
+
+extension ProfileTableViewController: RibStoryboardInstantiatable {}
+
+// MARK: - View Output
+
+extension ProfileTableViewController {
+  private struct ViewOutput: ProfileViewOutput {
+    @PublishControlEvent var emailUpdateTap: ControlEvent<Void>
+
+    @PublishControlEvent var myOrdersTap: ControlEvent<Void>
+
+    @PublishControlEvent var retryButtonTap: ControlEvent<Void>
+    
+    @PublishControlEvent  var pullToRefresh: ControlEvent<Void>
   }
 }
 
@@ -210,7 +228,3 @@ extension ProfileTableViewController {
     }
   }
 }
-
-// MARK: - RibStoryboardInstantiatable
-
-extension ProfileTableViewController: RibStoryboardInstantiatable {}

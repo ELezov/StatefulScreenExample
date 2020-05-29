@@ -21,8 +21,7 @@ final class ProfileInteractor: PresentableInteractor<ProfilePresentable>, Profil
   
   private let _state = BehaviorRelay<ProfileInteractorState>(value: .isLoading)
   
-  private let didLoadProfile = PublishRelay<Profile>()
-  private let profileLoadingError = PublishRelay<Error>()
+  private let responses = Responses()
   
   private let disposeBag = DisposeBag()
   
@@ -40,8 +39,8 @@ final class ProfileInteractor: PresentableInteractor<ProfilePresentable>, Profil
   private func loadProfile() {
     profileService.profile { [weak self] result in
       switch result {
-      case .success(let profile): self?.didLoadProfile.accept(profile)
-      case .failure(let error): self?.profileLoadingError.accept(error)
+      case .success(let profile): self?.responses.$didLoadProfile.accept(profile)
+      case .failure(let error): self?.responses.$profileLoadingError.accept(error)
       }
     }
   }
@@ -54,33 +53,33 @@ extension ProfileInteractor: IOTransformer {
   
   /// Метод производит биндинг переходов между всеми состояниями экрана.
   func transform(_ input: ProfileViewOutput) -> Observable<ProfileInteractorState> {
-    let readonlyState = _state.asObservable()
+    let trait = StateTransformTrait(_state: _state, disposeBag: disposeBag)
     
     let profileRequest: VoidClosure = { [weak self] in self?.loadProfile() }
     
-    StateTransform.fromLoadingErrorToIsLoading(readonlyState: readonlyState,
+    StateTransform.fromDataLoadingToIsLoading(trait: trait,
+                                              pullToRefresh: input.pullToRefresh,
+                                              profileRequest: profileRequest)
+    
+    StateTransform.fromLoadingErrorToIsLoading(trait: trait,
                                                retryButtonTap: input.retryButtonTap,
-                                               stateEntryAction: profileRequest,
-                                               bindTo: _state,
-                                               disposedBy: disposeBag)
+                                               profileRequest: profileRequest)
     
-    StateTransform.fromIsLoadingToLoadingError(readonlyState: readonlyState,
-                                               profileLoadingError: profileLoadingError.asObservable(),
-                                               bindTo: _state,
-                                               disposedBy: disposeBag)
+    StateTransform.fromIsLoadingToLoadingError(trait: trait,
+                                               profileLoadingError: responses.profileLoadingError)
     
-    StateTransform.fromIsLoadingToDataLoaded(readonlyState: readonlyState,
-                                             didLoadProfile: didLoadProfile.asObservable(),
-                                             bindTo: _state,
-                                             disposedBy: disposeBag)
+    StateTransform.fromIsLoadingToDataLoaded(trait: trait,
+                                             didLoadProfile: responses.didLoadProfile)
     
-    bindRouting(input, readonlyState: readonlyState)
+    bindStatefulRouting(input, trait: trait)
     
-    return readonlyState
+    return trait.readOnlyState
   }
   
-  private func bindRouting(_ viewOutput: ProfileViewOutput, readonlyState: Observable<State>) {
-    viewOutput.emailUpdateTap.withLatestFrom(readonlyState).subscribe(onNext: { [weak self] state in
+  private func bindStatefulRouting(_ viewOutput: ProfileViewOutput, trait: StateTransformTrait<State>) {
+    let byDataLoadedState = StateTransform.byDataLoadedState
+    
+    viewOutput.emailUpdateTap.withLatestFrom(trait.readOnlyState).subscribe(onNext: { [weak self] state in
       switch state {
       case .dataLoaded(let profile):
         if profile.email == nil {
@@ -92,69 +91,74 @@ extension ProfileInteractor: IOTransformer {
         }
       default: break
       }
-    }).disposed(by: disposeBag)
+    }).disposed(by: trait.disposeBag)
     
-    viewOutput.myOrdersTap.withLatestFrom(readonlyState).subscribe(onNext: { [weak self] state in
-      switch state {
-      case .dataLoaded:
+    viewOutput.myOrdersTap.filteredByState(trait.readOnlyState, filter: byDataLoadedState)
+      .subscribe(onNext: { [weak self] _ in
         self?.router?.routeToOrdersList()
-      default: break
-      }
-    }).disposed(by: disposeBag)
+      }).disposed(by: trait.disposeBag)
   }
 }
 
 extension ProfileInteractor {
   /// StateTransform реализует переходы между всеми состояниями. Функции должны быть чистыми и детерминированными
   private enum StateTransform: Namespace {
+    /// case .isLoading
+    static let byDataLoadedState: (State) -> Bool = { state -> Bool in
+      guard case .dataLoaded = state else { return false } ; return true
+    }
+    
+    /// case .isLoading
+    static let byIsLoadingState: (State) -> Bool = { state -> Bool in
+      guard case .isLoading = state else { return false } ; return true
+    }
+    
+    static func fromDataLoadingToIsLoading(trait: StateTransformTrait<State>,
+                                           pullToRefresh: ControlEvent<Void>,
+                                           profileRequest: @escaping () -> Void) {
+      pullToRefresh.filteredByState(trait.readOnlyState, filter: byDataLoadedState)
+        .do(onNext: profileRequest)
+        .map { State.isLoading }
+        .bind(to: trait._state)
+        .disposed(by: trait.disposeBag)
+    }
+    
     /// Переход из состояния LoadingError в IsLoading
     /// - Parameters:
-    ///   - stateEntryAction: деятельность, которая выполняется при входе в состояние
-    static func fromLoadingErrorToIsLoading(readonlyState: Observable<ProfileInteractorState>,
+    ///   - profileRequest: деятельность, которая выполняется при входе в состояние
+    static func fromLoadingErrorToIsLoading(trait: StateTransformTrait<State>,
                                             retryButtonTap: ControlEvent<Void>,
-                                            stateEntryAction: @escaping () -> Void,
-                                            bindTo _state: BehaviorRelay<State>,
-                                            disposedBy disposeBag: DisposeBag) {
-      let fromLoadingErrorToIsLoading = retryButtonTap.filteredByState(readonlyState) { state in
-        switch state {
-        case .loadingError: return true
-        default: return false
-        }
+                                            profileRequest: @escaping () -> Void) {
+      retryButtonTap.filteredByState(trait.readOnlyState) { state in
+        guard case .loadingError = state else { return false } ; return true
       }
-      .do(onNext: stateEntryAction)
+      .do(onNext: profileRequest)
       .map { State.isLoading }
-      
-      fromLoadingErrorToIsLoading.bind(to: _state).disposed(by: disposeBag)
+      .bind(to: trait._state)
+      .disposed(by: trait.disposeBag)
     }
     
-    static func fromIsLoadingToLoadingError(readonlyState: Observable<ProfileInteractorState>,
-                                            profileLoadingError: Observable<Error>,
-                                            bindTo _state: BehaviorRelay<State>,
-                                            disposedBy disposeBag: DisposeBag) {
-      let fromIsLoadingToLoadingError = profileLoadingError.filteredByState(readonlyState) { state in
-        switch state {
-        case .isLoading: return true
-        default: return false
-        }
-      }
-      .map { error in State.loadingError(error) }
-      
-      fromIsLoadingToLoadingError.bind(to: _state).disposed(by: disposeBag)
+    static func fromIsLoadingToLoadingError(trait: StateTransformTrait<State>,
+                                            profileLoadingError: Observable<Error>) {
+      profileLoadingError.filteredByState(trait.readOnlyState, filter: byIsLoadingState)
+        .map { error in State.loadingError(error) }
+        .bind(to: trait._state)
+        .disposed(by: trait.disposeBag)
     }
     
-    static func fromIsLoadingToDataLoaded(readonlyState: Observable<ProfileInteractorState>,
-                                          didLoadProfile: Observable<Profile>,
-                                          bindTo _state: BehaviorRelay<State>,
-                                          disposedBy disposeBag: DisposeBag) {
-      let fromIsLoadingToDataLoaded = didLoadProfile.filteredByState(readonlyState) { state in
-        switch state {
-        case .isLoading: return true
-        default: return false
-        }
-      }
-      .map { profile in State.dataLoaded(profile) }
-      
-      fromIsLoadingToDataLoaded.bind(to: _state).disposed(by: disposeBag)
+    static func fromIsLoadingToDataLoaded(trait: StateTransformTrait<State>,
+                                          didLoadProfile: Observable<Profile>) {
+      didLoadProfile.filteredByState(trait.readOnlyState, filter: byIsLoadingState)
+        .map { profile in State.dataLoaded(profile) }
+        .bind(to: trait._state)
+        .disposed(by: trait.disposeBag)
     }
+  }
+}
+
+extension ProfileInteractor {
+  private struct Responses {
+    @PublishObservable var didLoadProfile: Observable<Profile>
+    @PublishObservable var profileLoadingError: Observable<Error>
   }
 }

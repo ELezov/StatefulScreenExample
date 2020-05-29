@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8E5925D724812927002623FB /* PublishObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E5925D624812927002623FB /* PublishObservable.swift */; };
+		8E5925D924812D75002623FB /* Observable+LoadingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E5925D824812D75002623FB /* Observable+LoadingIndicator.swift */; };
+		8E5925DB24812DD5002623FB /* LoadingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E5925DA24812DD5002623FB /* LoadingState.swift */; };
+		8E5925DD248130BA002623FB /* StateTransformTrait.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E5925DC248130BA002623FB /* StateTransformTrait.swift */; };
 		8E71C13B23999E920051C45E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E71C13A23999E920051C45E /* AppDelegate.swift */; };
 		8E71C13D23999E920051C45E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E71C13C23999E920051C45E /* SceneDelegate.swift */; };
 		8E71C14423999E940051C45E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E71C14323999E940051C45E /* Assets.xcassets */; };
@@ -79,6 +83,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8E5925D624812927002623FB /* PublishObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublishObservable.swift; sourceTree = "<group>"; };
+		8E5925D824812D75002623FB /* Observable+LoadingIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Observable+LoadingIndicator.swift"; sourceTree = "<group>"; };
+		8E5925DA24812DD5002623FB /* LoadingState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingState.swift; sourceTree = "<group>"; };
+		8E5925DC248130BA002623FB /* StateTransformTrait.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateTransformTrait.swift; sourceTree = "<group>"; };
 		8E71C13723999E920051C45E /* StatefulScreenExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StatefulScreenExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E71C13A23999E920051C45E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8E71C13C23999E920051C45E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -198,7 +206,6 @@
 				8EFD7C37239C14DB002EBA60 /* CommonViews */,
 				8EFD7C18239BF085002EBA60 /* Services */,
 				8E71C16B23999EB10051C45E /* Tooling */,
-				8E71C13A23999E920051C45E /* AppDelegate.swift */,
 				8E73C8D4239C60AE000A7F8A /* Main.storyboard */,
 				8E71C13C23999E920051C45E /* SceneDelegate.swift */,
 				8E71C14323999E940051C45E /* Assets.xcassets */,
@@ -242,6 +249,7 @@
 			isa = PBXGroup;
 			children = (
 				8EFD7C1D239BF582002EBA60 /* Tooling.swift */,
+				8E5925DA24812DD5002623FB /* LoadingState.swift */,
 				8EFD7C24239BF77A002EBA60 /* VIPBinder.swift */,
 				8EFD7C26239BF7D1002EBA60 /* StoryboardInstantiatable.swift */,
 				8EFD7C3A239C1680002EBA60 /* NibLoadable.swift */,
@@ -250,6 +258,10 @@
 				8E73C892239C4411000A7F8A /* TableViewRegisterable.swift */,
 				8E73C897239C4482000A7F8A /* UITableViewXibContainerCell.swift */,
 				8E73C8F0239C6D13000A7F8A /* Router+Detach.swift */,
+				8E5925D624812927002623FB /* PublishObservable.swift */,
+				8E71C13A23999E920051C45E /* AppDelegate.swift */,
+				8E5925D824812D75002623FB /* Observable+LoadingIndicator.swift */,
+				8E5925DC248130BA002623FB /* StateTransformTrait.swift */,
 			);
 			path = Tooling;
 			sourceTree = "<group>";
@@ -529,6 +541,7 @@
 				8EFD7C4D239C22A4002EBA60 /* Rx+Extension.swift in Sources */,
 				8E73C8E8239C64D9000A7F8A /* MainScreenBuilder.swift in Sources */,
 				8EFD7C3B239C1680002EBA60 /* NibLoadable.swift in Sources */,
+				8E5925DD248130BA002623FB /* StateTransformTrait.swift in Sources */,
 				8EFD7C27239BF7D1002EBA60 /* StoryboardInstantiatable.swift in Sources */,
 				8EFD7C0D239BF000002EBA60 /* ProfilePresenter.swift in Sources */,
 				8E73C8E7239C64D9000A7F8A /* MainScreenProtocols.swift in Sources */,
@@ -542,10 +555,12 @@
 				8EFD7C2A239BF95B002EBA60 /* ProfileTableViewController.swift in Sources */,
 				8E73C8BF239C5A46000A7F8A /* AppComponent.swift in Sources */,
 				8EFD7C25239BF77A002EBA60 /* VIPBinder.swift in Sources */,
+				8E5925DB24812DD5002623FB /* LoadingState.swift in Sources */,
 				8E73C8E9239C64D9000A7F8A /* MainScreenInteractor.swift in Sources */,
 				8EFD7C1C239BF15C002EBA60 /* ProfileServiceImp.swift in Sources */,
 				8EFD7C0E239BF000002EBA60 /* ProfileRouter.swift in Sources */,
 				8E73C8AD239C493A000A7F8A /* DisclosureTextView.swift in Sources */,
+				8E5925D724812927002623FB /* PublishObservable.swift in Sources */,
 				8EFD7C42239C1A04002EBA60 /* UIView+Extensions.swift in Sources */,
 				8E73C893239C4411000A7F8A /* TableViewRegisterable.swift in Sources */,
 				8EFD7C2D239BFB20002EBA60 /* RootDependency.swift in Sources */,
@@ -558,6 +573,7 @@
 				8E73C8A5239C45AE000A7F8A /* ContactFieldView.swift in Sources */,
 				8EFD7C13239BF000002EBA60 /* ProfileInteractor.swift in Sources */,
 				8E73C8CB239C5B01000A7F8A /* RootNavigationBuilder.swift in Sources */,
+				8E5925D924812D75002623FB /* Observable+LoadingIndicator.swift in Sources */,
 				8EFD7C12239BF000002EBA60 /* ProfileBuilder.swift in Sources */,
 				8EFD7C1A239BF0A1002EBA60 /* ProfileService.swift in Sources */,
 			);

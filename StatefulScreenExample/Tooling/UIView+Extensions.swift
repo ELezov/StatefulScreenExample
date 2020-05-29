@@ -62,3 +62,11 @@ extension UIStackView {
 extension UIColor {
   static let yellowMain: UIColor = #colorLiteral(red: 0.9803921569, green: 0.862745098, blue: 0.1725490196, alpha: 1)
 }
+
+extension Reactive where Base: UIRefreshControl {
+  public var endRefreshing: Binder<Void> {
+    Binder(base) { refreshControl, _ in
+      refreshControl.endRefreshing()
+    }
+  }
+}

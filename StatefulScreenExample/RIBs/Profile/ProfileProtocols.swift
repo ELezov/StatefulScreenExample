@@ -42,24 +42,28 @@ protocol ProfilePresentable: Presentable {}
 
 // MARK: Outputs
 
-typealias ProfileInteractorState = IState<Profile, Error>
+typealias ProfileInteractorState = LoadingState<Profile, Error>
 
 struct ProfilePresenterOutput {
   let viewModel: Driver<ProfileViewModel>
   let isContentViewVisible: Driver<Bool>
-  let isLoadingIndicatorVisible: Driver<Bool>
+  
+  let initialLoadingIndicatorVisible: Driver<Bool>
+  let hideRefreshControl: Signal<Void>
   
   /// nil означает что нужно спрятать сообщение об ошибке
   let showError: Signal<ErrorMessageViewModel?>
 }
 
-struct ProfileViewOutput {
+protocol ProfileViewOutput {
   /// Добавление / изменение e-mail'a
-  let emailUpdateTap: ControlEvent<Void>
+  var emailUpdateTap: ControlEvent<Void> { get }
   
-  let myOrdersTap: ControlEvent<Void>
+  var myOrdersTap: ControlEvent<Void> { get }
   
-  let retryButtonTap: ControlEvent<Void>
+  var retryButtonTap: ControlEvent<Void> { get }
+  
+  var pullToRefresh: ControlEvent<Void> { get }
 }
 
 struct ProfileViewModel: Equatable {

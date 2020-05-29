@@ -25,18 +25,6 @@ public protocol BindableView: AnyObject {
   func bindWith(_ input: Input)
 }
 
-/// Состояние интеракторов, которое встречается на многих экранах..
-/// L - Loading, D  - Data, E - Error
-public enum IState<D, E> {
-  case isLoading
-  case dataLoaded(D)
-  case loadingError(E)
-}
-
-extension IState: Equatable where D: Equatable, E: Equatable {}
-
-extension IState: Hashable where D: Hashable, E: Hashable {}
-
 public struct TitledText: Hashable {
   public let title: String
   public let text: String
